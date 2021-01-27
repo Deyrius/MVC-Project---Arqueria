@@ -1,0 +1,145 @@
+USE [Arqueria]
+GO
+/****** Object:  Table [dbo].[Arquero]    Script Date: 18/12/2020 17:46:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Arquero](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Apellido] [varchar](255) NOT NULL,
+	[Nombre] [varchar](255) NOT NULL,
+	[Club] [int] NOT NULL,
+	[Imagen] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Campeonato]    Script Date: 18/12/2020 17:46:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Campeonato](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Anio] [varchar](5) NOT NULL,
+	[PrimerPuesto] [int] NULL,
+	[SegundoPuesto] [int] NULL,
+	[TercerPuesto] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Categoria]    Script Date: 18/12/2020 17:46:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Categoria](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [varchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Club]    Script Date: 18/12/2020 17:46:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Club](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [varchar](255) NOT NULL,
+	[Imagen] [varchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Diana]    Script Date: 18/12/2020 17:46:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Diana](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [varchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Participacion]    Script Date: 18/12/2020 17:46:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Participacion](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Arquero] [int] NOT NULL,
+	[Torneo] [int] NOT NULL,
+	[Categoria] [int] NOT NULL,
+	[Diana] [int] NOT NULL,
+	[Puntaje] [int] NULL,
+	[Mosca] [int] NOT NULL,
+	[Puesto] [int] NOT NULL,
+	[PrimerTreinta] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Torneo]    Script Date: 18/12/2020 17:46:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Torneo](
+	[Nombre] [varchar](100) NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Fecha] [date] NOT NULL,
+	[Campeonato] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Participacion] ADD  CONSTRAINT [DF_Participacion_PrimerTreinta]  DEFAULT ((0)) FOR [PrimerTreinta]
+GO
+ALTER TABLE [dbo].[Arquero]  WITH CHECK ADD FOREIGN KEY([Club])
+REFERENCES [dbo].[Club] ([Id])
+GO
+ALTER TABLE [dbo].[Campeonato]  WITH CHECK ADD FOREIGN KEY([PrimerPuesto])
+REFERENCES [dbo].[Arquero] ([Id])
+GO
+ALTER TABLE [dbo].[Campeonato]  WITH CHECK ADD FOREIGN KEY([SegundoPuesto])
+REFERENCES [dbo].[Arquero] ([Id])
+GO
+ALTER TABLE [dbo].[Campeonato]  WITH CHECK ADD FOREIGN KEY([TercerPuesto])
+REFERENCES [dbo].[Arquero] ([Id])
+GO
+ALTER TABLE [dbo].[Participacion]  WITH CHECK ADD FOREIGN KEY([Arquero])
+REFERENCES [dbo].[Arquero] ([Id])
+GO
+ALTER TABLE [dbo].[Participacion]  WITH CHECK ADD FOREIGN KEY([Categoria])
+REFERENCES [dbo].[Categoria] ([Id])
+GO
+ALTER TABLE [dbo].[Participacion]  WITH CHECK ADD FOREIGN KEY([Diana])
+REFERENCES [dbo].[Diana] ([Id])
+GO
+ALTER TABLE [dbo].[Participacion]  WITH CHECK ADD FOREIGN KEY([Torneo])
+REFERENCES [dbo].[Torneo] ([Id])
+GO
+ALTER TABLE [dbo].[Torneo]  WITH CHECK ADD FOREIGN KEY([Campeonato])
+REFERENCES [dbo].[Campeonato] ([Id])
+GO

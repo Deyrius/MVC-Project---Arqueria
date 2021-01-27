@@ -1,0 +1,89 @@
+@model ListaParticipacionDto  
+
+
+<div class="text-center" id="tabla">
+    <div>
+        <h1 class="display-4">Torneo  @Model.torneo.Nombre </h1>
+    
+   @functions{
+        string MostrarBanderaClub(string club){
+            var _club = club.Replace(" ", string.Empty).ToLower();
+            return Url.Content("~/imagenes/" + _club + ".jpg" );
+        }
+    }
+     
+    @using(Html.BeginForm()){
+        <p>
+            Buscar por nombre o apellido: @Html.TextBox("campobusqueda")
+            <input type="submit" value="Buscar" class="btn btn-dark"/>
+        </p>
+    } 
+        <button type="button" class="btn btn-dark">@Html.ActionLink("Volver","IrAListaTorneo")</button>
+        <button type="button" class="btn btn-dark">@Html.ActionLink("Ordenar por puesto y categoria","Order")</button>  
+        <button type="button" class="btn btn-dark">@Html.ActionLink("Agregar Participante","Agregar", new{id = Model.torneo.Id} )</button>
+        
+        <br/>
+
+        <table class="table">
+        <tr>
+            <th>Arquero</th>
+            <th>Club</th>
+            <th>Categoria</th>
+            <th>Diana</th>
+            <th>Mosca</th>
+            <th>Puesto</th>
+            <th>Primer 30</th>
+            <th>Puntaje</th>
+
+        </tr>
+        @using (@Html.BeginForm())
+        {
+        
+            <input asp-for="torneo.Id" class="form-control form-control-sm" style="display:none">
+            @for (int i = 0; i < Model.participantes.Count ; i++)
+            {
+            <input asp-for="participantes[i].Id" class="form-control form-control-sm" style="display:none">
+            <input asp-for="participantes[i].categoria.Nombre" class="form-control form-control-sm" style="display:none">
+                <tr>
+                    <td>
+                         @if (System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory()+ "\\wwwroot" +  @Url.Content("~/imagenes/"  + @Model.participantes[i].arquero.Nombre + @Model.participantes[i].arquero.Id + ".jpg" )))
+                        {
+                            <img src='@Url.Content("~/imagenes/"  + @Model.participantes[i].arquero.Nombre + @Model.participantes[i].arquero.Id + ".jpg" )' 
+                            class="rounded-circle"  style="width: 70px;height:70px;" />
+                        }
+                        else
+                        {
+                            <img src='@Url.Content("~/imagenes/"  + "noimagen" + ".jpg" )' 
+                            class="rounded-circle"  style="width: 70px;height:70px;" />
+                        }
+
+                        @Model.participantes[i].arquero.Nombre  
+                        @Model.participantes[i].arquero.Apellido 
+                        <td><a href='@Url.Action("IrAClub", "Arqueros",new {id=Model.participantes[i].arquero.ClubNavigation.Id})'>
+                        <img src='@MostrarBanderaClub(@Model.participantes[i].arquero.ClubNavigation.Nombre)' class="rounded-circle" style="width:80px; height:80px;"/>    
+                    </a>
+                    </td>
+                    <td>@Model.participantes[i].categoria.Nombre</td>
+                    <td>@Model.participantes[i].diana.Nombre</td>
+                    <td style="width:50px">
+                        <input type="number" asp-for="participantes[i].mosca" class="form-control form-control-sm" style="width:55px" min="0">
+                    </td>
+                    <td>@Model.participantes[i].puesto</td>
+                    <td>
+                        <input type="checkbox" asp-for="participantes[i].primerTreinta" class="form-control form-control-sm" style="display:inline-block; width:50%" min="0">
+                    </td>
+                    <td style="width:50px">
+                        <input type="number" asp-for="participantes[i].puntaje" style="width:55px" class="form-control form-control-sm"  min="0">
+                    </td>
+
+                    <td>
+                        <button type="button" class="btn btn-dark">@Html.ActionLink("Ver","Detalle",new {id=Model.participantes[i].arquero.Id}) </button>
+                    </td>
+                </tr>
+            }
+
+        } 
+        
+        </table>
+    </div> 
+</div>

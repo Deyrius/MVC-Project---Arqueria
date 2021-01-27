@@ -1,0 +1,29 @@
+@model Club
+@{
+    ViewData["Title"] = "Home Page"; 
+}
+
+<div class="" id="tabla">
+    <h1 class="display-4">Crear un Club</h1>
+    <button type="button" class="btn btn-dark mb-3 mt-3">@Html.ActionLink("Volver","ListaClubes")</button>
+
+@using (@Html.BeginForm())
+{
+
+    <div class="form-group">
+        @Html.LabelFor(m=> m.Nombre)
+        @Html.TextBoxFor(m=> m.Nombre, new {@class="form-control",@required="true"})
+    </div>
+    <div class="form-group">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                @Html.ValidationSummary(false,"Solucionar los siguientes errores:",
+                    new{@class="text-danger"})
+            }
+    </div>
+    <input type="submit" value="Crear Club" class="btn btn-success"/>
+    
+}
+ 
+
+</div>

@@ -1,0 +1,56 @@
+@model ArqueroCrearDto
+
+
+<div class="" id="tabla">
+    <h1 class="display-4">Crear un Arquero</h1>
+    <button type="button" class="btn btn-dark mb-3 mt-3 ml-3">@Html.ActionLink("Volver","ListaArquero")</button>
+
+@using (@Html.BeginForm(null,null,FormMethod.Post,new {enctype="multipart/form-data"}))
+{
+    <div class="form-group">
+        @Html.LabelFor(m=> m.Nombre)
+        @Html.TextBoxFor(m=> m.Nombre, new {@class="form-control",@required="true"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m=> m.Apellido)
+        @Html.TextBoxFor(m=> m.Apellido, new {@class="form-control",@required="true"})
+    </div>
+    <div class="dropdown" >
+        @Html.LabelFor(a => a.ClubId, "Seleccione un club")
+        @Html.DropDownListFor(m => m.ClubId, new SelectList(Model.Clubes, "Value", "Text", Model.Clubes.ToList()[0].Value), new {@required="true", @class="form-control"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(f => f.Foto)
+        <div class="custom-file">
+            @Html.TextBoxFor(f => f.Foto, new{type="file",@class="form-control custom-file-input"})
+            @Html.LabelFor(f => f.Foto,"Seleccionar Foto",new{@class ="custom-file-label" })
+        </div>
+    </div>
+    <input type="submit" value="Crear Arquero" class="btn btn-success mt-3 mb-3 ml-3"/>
+
+    <div class="form-group">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                @Html.ValidationSummary(
+                    false,
+                    "Solucionar los siguientes errores:",
+                    new{@class="text-danger"}
+                )
+            }
+    </div>
+
+    
+}
+
+ @section Scripts{
+    <script>
+        $(document).ready(function(){
+            $('.custom-file-input').on("change",function(){
+                var nombreArchivo=$(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(nombreArchivo);
+            });
+        });
+    </script>
+}
+
+</div>

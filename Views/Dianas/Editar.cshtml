@@ -1,0 +1,80 @@
+@model Diana
+
+<div class="" id="tabla">
+
+    <h1 class="display-4">Edición de diana </h1>
+    
+   
+    <a href='@Url.Action("ListaDiana","Dianas")'>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="50" height="50" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g transform="matrix(-1.8369701987210297e-16,-1,1,-1.8369701987210297e-16,-2.842170943040401e-14,512)">
+            <g xmlns="http://www.w3.org/2000/svg">
+                <path style="" d="M236.662,337.591l-50.299,40.406c-1.229,0.988-1.944,2.479-1.944,4.054v124.736   c0,4.246,4.814,6.703,8.252,4.212l43.99-31.873V337.591H236.662z" fill="#ff4f19" data-original="#ff4f19"/>
+                <path style="" d="M275.338,337.591l50.299,40.406c1.229,0.988,1.944,2.479,1.944,4.054v124.736   c0,4.246-4.814,6.703-8.252,4.212l-43.99-31.873L275.338,337.591L275.338,337.591z" fill="#ff4f19" data-original="#ff4f19"/>
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+                <path style="" d="M327.576,382.056v124.73c0,4.254-4.806,6.709-8.249,4.213l-13.273-9.622   c0.791-0.936,1.279-2.153,1.279-3.547V364.964c0-0.676-0.125-1.341-0.375-1.966l18.682,15   C326.868,378.987,327.576,380.474,327.576,382.056z" fill="#e23d17" data-original="#e23d17"/>
+                <path style="" d="M184.419,382.056v124.73c0,4.254,4.806,6.709,8.249,4.213l13.273-9.622   c-0.791-0.936-1.279-2.153-1.279-3.547V364.964c0-0.676,0.125-1.341,0.375-1.966l-18.682,15   C185.127,378.987,184.419,380.474,184.419,382.056z" fill="#e23d17" data-original="#e23d17"/>
+            </g>
+            <path xmlns="http://www.w3.org/2000/svg" style="" d="M251.526,2.176L215.78,50.797c-2.59,3.523-0.074,8.495,4.298,8.495h35.746h35.746  c4.373,0,6.889-4.972,4.298-8.495L260.123,2.176C257.99-0.725,253.658-0.725,251.526,2.176z" fill="#b7c1ca" data-original="#b7c1ca"/>
+            <path xmlns="http://www.w3.org/2000/svg" style="" d="M291.573,59.292h-16.64L242.237,14.82l9.289-12.642c2.131-2.901,6.465-2.902,8.598-0.001  l35.749,48.62C298.462,54.319,295.946,59.292,291.573,59.292z" fill="#a3aeb7" data-original="#a3aeb7"/>
+            <rect xmlns="http://www.w3.org/2000/svg" x="236.663" y="59.292" style="" width="38.677" height="418.918" fill="#ffdba9" data-original="#ffdba9"/>
+            <rect xmlns="http://www.w3.org/2000/svg" x="255.995" y="59.292" style="" width="19.338" height="418.918" fill="#ffc473" data-original="#ffc473"/>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            </g></svg>
+        </a>
+
+    @using (@Html.BeginForm())
+    {
+        <div class="form-group">
+            @Html.LabelFor(m=> m.Id)
+            @Html.TextBoxFor(m=> m.Id, new {@class="form-control",@readonly = "readonly"} )
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m=> m.Nombre)
+            @Html.TextBoxFor(m=> m.Nombre, new {@class="form-control",@required="true"} )
+        </div>
+
+        <div class="form-group">
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    @Html.ValidationSummary(
+                        false,
+                        "Solucionar los siguientes errores:",
+                        new{@class="text-danger"}
+                    )
+                }
+        </div>
+
+        <input type="submit" class="btn btn-success ml-3 mb-3" value="Guardar Diana" />
+        
+    }
+</div>

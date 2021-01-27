@@ -1,0 +1,98 @@
+@model List<Torneo> 
+
+<div class="text-center" id="tabla">
+    <div>
+        <h1 class="display-4">Lista de torneos</h1>
+  
+    @using(Html.BeginForm()){
+        <p>
+            Buscar torneo: @Html.TextBox("campobusqueda")
+            <input type="submit" value="Buscar" class="btn btn-dark"/>
+        </p>
+    } 
+
+    
+        <a href='@Url.Action("IrHome","Torneos")'>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="50" height="50" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g transform="matrix(-1.8369701987210297e-16,-1,1,-1.8369701987210297e-16,-2.842170943040401e-14,512)">
+            <g xmlns="http://www.w3.org/2000/svg">
+                <path style="" d="M236.662,337.591l-50.299,40.406c-1.229,0.988-1.944,2.479-1.944,4.054v124.736   c0,4.246,4.814,6.703,8.252,4.212l43.99-31.873V337.591H236.662z" fill="#ff4f19" data-original="#ff4f19"/>
+                <path style="" d="M275.338,337.591l50.299,40.406c1.229,0.988,1.944,2.479,1.944,4.054v124.736   c0,4.246-4.814,6.703-8.252,4.212l-43.99-31.873L275.338,337.591L275.338,337.591z" fill="#ff4f19" data-original="#ff4f19"/>
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+                <path style="" d="M327.576,382.056v124.73c0,4.254-4.806,6.709-8.249,4.213l-13.273-9.622   c0.791-0.936,1.279-2.153,1.279-3.547V364.964c0-0.676-0.125-1.341-0.375-1.966l18.682,15   C326.868,378.987,327.576,380.474,327.576,382.056z" fill="#e23d17" data-original="#e23d17"/>
+                <path style="" d="M184.419,382.056v124.73c0,4.254,4.806,6.709,8.249,4.213l13.273-9.622   c-0.791-0.936-1.279-2.153-1.279-3.547V364.964c0-0.676,0.125-1.341,0.375-1.966l-18.682,15   C185.127,378.987,184.419,380.474,184.419,382.056z" fill="#e23d17" data-original="#e23d17"/>
+            </g>
+            <path xmlns="http://www.w3.org/2000/svg" style="" d="M251.526,2.176L215.78,50.797c-2.59,3.523-0.074,8.495,4.298,8.495h35.746h35.746  c4.373,0,6.889-4.972,4.298-8.495L260.123,2.176C257.99-0.725,253.658-0.725,251.526,2.176z" fill="#b7c1ca" data-original="#b7c1ca"/>
+            <path xmlns="http://www.w3.org/2000/svg" style="" d="M291.573,59.292h-16.64L242.237,14.82l9.289-12.642c2.131-2.901,6.465-2.902,8.598-0.001  l35.749,48.62C298.462,54.319,295.946,59.292,291.573,59.292z" fill="#a3aeb7" data-original="#a3aeb7"/>
+            <rect xmlns="http://www.w3.org/2000/svg" x="236.663" y="59.292" style="" width="38.677" height="418.918" fill="#ffdba9" data-original="#ffdba9"/>
+            <rect xmlns="http://www.w3.org/2000/svg" x="255.995" y="59.292" style="" width="19.338" height="418.918" fill="#ffc473" data-original="#ffc473"/>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            <g xmlns="http://www.w3.org/2000/svg">
+            </g>
+            </g></svg>
+        </a>
+        <a href='@Url.Action("Crear","Torneos")'>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="50" height="50" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><g xmlns="http://www.w3.org/2000/svg"><g><g><g><path d="m361.388 0h-305.039c-11.002 0-19.92 8.901-19.92 19.881v407.546c0 10.98 8.919 19.881 19.92 19.881h213.587l111.373-111.151v-316.276c0-10.98-8.919-19.881-19.921-19.881z" fill="#f3ebdb" data-original="#fff7e8" style="" class=""/><path d="m361.388 0h-40.594c11.002 0 19.92 8.901 19.92 19.88v345.977l40.594-29.701v-316.276c.001-10.979-8.918-19.88-19.92-19.88z" fill="#ffc75c" data-original="#fff1d6" style="" class=""/><path d="m289.856 336.157h91.452l-111.372 111.151v-91.27c0-10.98 8.919-19.881 19.92-19.881z" fill="#e7b85f" data-original="#ffd88f" style="" class=""/></g></g><g><path d="m74.516 40.533h266.148v91.512h-266.148z" fill="#4a4730" data-original="#ff7893" style="" class=""/><g fill="#ffd88f"><path d="m94.436 197.213h226.307c4.204 0 7.611-3.408 7.611-7.611 0-4.204-3.408-7.611-7.611-7.611h-226.307c-4.204 0-7.611 3.408-7.611 7.611s3.408 7.611 7.611 7.611z" fill="#e7b85f" data-original="#ffd88f" style="" class=""/><path d="m320.744 230.69h-226.308c-4.204 0-7.611 3.408-7.611 7.611 0 4.204 3.408 7.611 7.611 7.611h226.307c4.204 0 7.611-3.408 7.611-7.611.001-4.203-3.407-7.611-7.61-7.611z" fill="#e7b85f" data-original="#ffd88f" style="" class=""/><path d="m320.744 279.39h-226.308c-4.204 0-7.611 3.408-7.611 7.611s3.408 7.611 7.611 7.611h226.307c4.204 0 7.611-3.408 7.611-7.611s-3.407-7.611-7.61-7.611z" fill="#e7b85f" data-original="#ffd88f" style="" class=""/><path d="m221.142 328.089h-126.706c-4.204 0-7.611 3.408-7.611 7.611 0 4.204 3.408 7.611 7.611 7.611h126.706c4.204 0 7.611-3.408 7.611-7.611.001-4.203-3.407-7.611-7.611-7.611z" fill="#e7b85f" data-original="#ffd88f" style="" class=""/><path d="m221.142 376.789h-126.706c-4.204 0-7.611 3.408-7.611 7.611 0 4.204 3.408 7.611 7.611 7.611h126.706c4.204 0 7.611-3.408 7.611-7.611.001-4.203-3.407-7.611-7.611-7.611z" fill="#e7b85f" data-original="#ffd88f" style="" class=""/></g></g></g><g><path d="m330.857 454.072c-3.97-1.381-8.309.717-9.69 4.687l-15.008 43.126c-1.382 3.97.717 8.309 4.687 9.69.828.288 1.672.425 2.502.425 3.149 0 6.095-1.97 7.188-5.112l15.008-43.126c1.381-3.97-.717-8.309-4.687-9.69z" fill="#b5e8e0" data-original="#b5e8e0" style="" class=""/><path d="m319.723 486.109-.01-.004c-15.965-5.551-24.405-22.995-18.85-38.958l89.503-258.384 57.813 20.101-89.509 258.4c-5.553 15.957-22.989 24.394-38.947 18.845z" fill="#59a1a5" data-original="#59a1a5" style="" class=""/><path d="m390.365 188.763-4.364 12.597 21.582 7.504-89.509 258.401c-1.786 5.133-4.807 9.482-8.608 12.844 2.906 2.577 6.349 4.643 10.245 5.997l.01.004c15.959 5.549 33.394-2.888 38.947-18.845l89.509-258.401z" fill="#419296" data-original="#419296" style="" class=""/><path d="m418.542 342.165c-8.049-2.799-12.305-11.59-9.505-19.636l31.454-90.386-57.833-20.107c-8.049-2.799-12.305-11.59-9.505-19.636s11.595-12.299 19.645-9.501l72.408 25.175c8.049 2.799 12.305 11.59 9.505 19.636l-36.524 104.954c-2.8 8.046-11.596 12.3-19.645 9.501z" fill="#b5e8e0" data-original="#b5e8e0" style="" class=""/><path d="m438.567 198.813-33.684-11.711 20.033-57.566c3.235-9.297 13.394-14.212 22.692-10.98l.006.002c9.302 3.234 14.22 13.398 10.983 22.699z" fill="#59a1a5" data-original="#59a1a5" style="" class=""/></g></g></g></svg>
+        </a>
+        <a href='@Url.Action("Order","Torneos")'>
+            <svg height="50" viewBox="0 0 128 128" width="50" xmlns="http://www.w3.org/2000/svg"><g><path d="m6.306 39.363h115.387v82.331h-115.387z" fill="#dfeef4"/><path d="m6.306 15.838h115.387v23.525h-115.387z" fill="#f45858"/><path d="m60.269 6.306h7.462v19.062h-7.462z" fill="#6d7a84"/><path d="m90.052 6.306h7.462v19.062h-7.462z" fill="#6d7a84"/><path d="m30.486 6.306h7.462v19.062h-7.462z" fill="#6d7a84"/><g fill="#3ea2e5"><circle cx="27.661" cy="57.048" r="6.283"/><circle cx="51.887" cy="57.048" r="6.283"/><circle cx="76.113" cy="57.048" r="6.283"/><circle cx="100.339" cy="57.048" r="6.283"/><circle cx="27.661" cy="80.528" r="6.283"/><circle cx="51.887" cy="80.528" r="6.283"/><circle cx="76.113" cy="80.528" r="6.283"/><circle cx="100.339" cy="80.528" r="6.283"/><circle cx="27.661" cy="104.009" r="6.283"/><circle cx="51.887" cy="104.009" r="6.283"/><circle cx="76.113" cy="104.009" r="6.283"/><circle cx="100.339" cy="104.009" r="6.283"/></g></g></svg>
+        </a>
+        
+        
+        <table class="table">
+        <tr>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Campeonato</th>
+        </tr>
+
+        @foreach (var torneo in Model)
+        {
+            <tr>
+                <td>@torneo.Nombre</td>
+                <td>@torneo.MostrarFecha()</td>
+                <td>@torneo.CampeonatoNavigation.Anio</td>
+                <td>
+                    @{
+                        string labelBoton = DateTime.Compare(torneo.Fecha, DateTime.Now) > 0 ? "Participantes" : "Ver torneo";
+                    }
+                    <button type="button" class="btn btn-dark">@Html.ActionLink(@labelBoton, "IraInscripcion",new {torneoId=torneo.Id})</button>
+                </td>
+                
+                    
+                
+                    
+                    
+            </tr>
+            
+        }
+        </table>
+    </div> 
+</div>
